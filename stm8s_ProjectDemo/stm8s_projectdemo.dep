@@ -1,0 +1,23 @@
+;	STMicroelectronics dependencies file
+
+[Version]
+Keyword=ST7Project
+Number=1.3
+
+[Root.Source Files.libraries\src\stm8s_gpio.c.Config.0]
+ExternDep= libraries\src\stm8s_gpio.c  "D:\Program Files (x86)\COSMIC\CXSTM8\Hstm8\mods0.h"  libraries\inc\stm8s_gpio.h libraries\inc\stm8s.h  E:\学习资料\我的工程\stm8s_ProjectDemo\Source\stm8s_conf.h  libraries\inc\stm8s_adc1.h libraries\inc\stm8s_awu.h  libraries\inc\stm8s_beep.h libraries\inc\stm8s_clk.h  libraries\inc\stm8s_exti.h libraries\inc\stm8s_flash.h  libraries\inc\stm8s_i2c.h libraries\inc\stm8s_itc.h  libraries\inc\stm8s_iwdg.h libraries\inc\stm8s_rst.h  libraries\inc\stm8s_spi.h libraries\inc\stm8s_tim1.h  libraries\inc\stm8s_tim2.h libraries\inc\stm8s_tim3.h  libraries\inc\stm8s_tim4.h libraries\inc\stm8s_uart2.h  libraries\inc\stm8s_wwdg.h
+
+[Root.Source Files.main.c.Config.0]
+ExternDep= main.c "D:\Program Files (x86)\COSMIC\CXSTM8\Hstm8\mods0.h"  stm8s_all_include.h libraries\inc\stm8s.h  E:\学习资料\我的工程\stm8s_ProjectDemo\Source\stm8s_conf.h  libraries\inc\stm8s_adc1.h libraries\inc\stm8s_awu.h  libraries\inc\stm8s_beep.h libraries\inc\stm8s_clk.h  libraries\inc\stm8s_exti.h libraries\inc\stm8s_flash.h  libraries\inc\stm8s_gpio.h libraries\inc\stm8s_i2c.h  libraries\inc\stm8s_itc.h libraries\inc\stm8s_iwdg.h  libraries\inc\stm8s_rst.h libraries\inc\stm8s_spi.h  libraries\inc\stm8s_tim1.h libraries\inc\stm8s_tim2.h  libraries\inc\stm8s_tim3.h libraries\inc\stm8s_tim4.h  libraries\inc\stm8s_uart2.h libraries\inc\stm8s_wwdg.h  user_code\delay\delay.h user_code\led\led.h
+
+[Root.Source Files.source\stm8s_it.c.Config.0]
+ExternDep= source\stm8s_it.c  "D:\Program Files (x86)\COSMIC\CXSTM8\Hstm8\mods0.h"  E:\学习资料\我的工程\stm8s_ProjectDemo\Source\stm8s_it.h  libraries\inc\stm8s.h  E:\学习资料\我的工程\stm8s_ProjectDemo\Source\stm8s_conf.h  libraries\inc\stm8s_adc1.h libraries\inc\stm8s_awu.h  libraries\inc\stm8s_beep.h libraries\inc\stm8s_clk.h  libraries\inc\stm8s_exti.h libraries\inc\stm8s_flash.h  libraries\inc\stm8s_gpio.h libraries\inc\stm8s_i2c.h  libraries\inc\stm8s_itc.h libraries\inc\stm8s_iwdg.h  libraries\inc\stm8s_rst.h libraries\inc\stm8s_spi.h  libraries\inc\stm8s_tim1.h libraries\inc\stm8s_tim2.h  libraries\inc\stm8s_tim3.h libraries\inc\stm8s_tim4.h  libraries\inc\stm8s_uart2.h libraries\inc\stm8s_wwdg.h
+
+[Root.Source Files.stm8_interrupt_vector.c.Config.0]
+ExternDep= stm8_interrupt_vector.c  "D:\Program Files (x86)\COSMIC\CXSTM8\Hstm8\mods0.h"  E:\学习资料\我的工程\stm8s_ProjectDemo\Source\stm8s_it.h  libraries\inc\stm8s.h  E:\学习资料\我的工程\stm8s_ProjectDemo\Source\stm8s_conf.h  libraries\inc\stm8s_adc1.h libraries\inc\stm8s_awu.h  libraries\inc\stm8s_beep.h libraries\inc\stm8s_clk.h  libraries\inc\stm8s_exti.h libraries\inc\stm8s_flash.h  libraries\inc\stm8s_gpio.h libraries\inc\stm8s_i2c.h  libraries\inc\stm8s_itc.h libraries\inc\stm8s_iwdg.h  libraries\inc\stm8s_rst.h libraries\inc\stm8s_spi.h  libraries\inc\stm8s_tim1.h libraries\inc\stm8s_tim2.h  libraries\inc\stm8s_tim3.h libraries\inc\stm8s_tim4.h  libraries\inc\stm8s_uart2.h libraries\inc\stm8s_wwdg.h
+
+[Root.User_Code.User_Code\delay.user_code\delay\delay.c.Config.0]
+ExternDep= user_code\delay\delay.c  "D:\Program Files (x86)\COSMIC\CXSTM8\Hstm8\mods0.h" user_code\delay\delay.h  libraries\inc\stm8s.h  E:\学习资料\我的工程\stm8s_ProjectDemo\Source\stm8s_conf.h  libraries\inc\stm8s_adc1.h libraries\inc\stm8s_awu.h  libraries\inc\stm8s_beep.h libraries\inc\stm8s_clk.h  libraries\inc\stm8s_exti.h libraries\inc\stm8s_flash.h  libraries\inc\stm8s_gpio.h libraries\inc\stm8s_i2c.h  libraries\inc\stm8s_itc.h libraries\inc\stm8s_iwdg.h  libraries\inc\stm8s_rst.h libraries\inc\stm8s_spi.h  libraries\inc\stm8s_tim1.h libraries\inc\stm8s_tim2.h  libraries\inc\stm8s_tim3.h libraries\inc\stm8s_tim4.h  libraries\inc\stm8s_uart2.h libraries\inc\stm8s_wwdg.h
+
+[Root.User_Code.User_Code\led.user_code\led\led.c.Config.0]
+ExternDep= user_code\led\led.c  "D:\Program Files (x86)\COSMIC\CXSTM8\Hstm8\mods0.h" user_code\led\led.h  libraries\inc\stm8s.h  E:\学习资料\我的工程\stm8s_ProjectDemo\Source\stm8s_conf.h  libraries\inc\stm8s_adc1.h libraries\inc\stm8s_awu.h  libraries\inc\stm8s_beep.h libraries\inc\stm8s_clk.h  libraries\inc\stm8s_exti.h libraries\inc\stm8s_flash.h  libraries\inc\stm8s_gpio.h libraries\inc\stm8s_i2c.h  libraries\inc\stm8s_itc.h libraries\inc\stm8s_iwdg.h  libraries\inc\stm8s_rst.h libraries\inc\stm8s_spi.h  libraries\inc\stm8s_tim1.h libraries\inc\stm8s_tim2.h  libraries\inc\stm8s_tim3.h libraries\inc\stm8s_tim4.h  libraries\inc\stm8s_uart2.h libraries\inc\stm8s_wwdg.h
