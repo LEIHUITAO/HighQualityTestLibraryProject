@@ -6,3 +6,7 @@ Keyword=ST7Workspace-V0.7
 [Project0]
 Filename=stm8s_uart_master.stp
 Dependencies=
+[Options]
+ActiveProject=stm8s_uart_master
+ActiveConfig=Debug
+AddSortedElements=0

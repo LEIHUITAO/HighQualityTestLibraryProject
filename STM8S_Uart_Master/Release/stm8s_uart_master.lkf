@@ -50,8 +50,17 @@ crtsi0.sm8
 
 # Object files list - section reserved for STVD
 #<BEGIN OBJECT_FILES>
+Release\stm8s_clk.o
+Release\stm8s_exti.o
+Release\stm8s_gpio.o
+Release\stm8s_tim4.o
 Release\main.o
 Release\stm8s_it.o
+Release\stm8s_clock.o
+Release\stm8s_delay.o
+Release\stm8s_led.o
+Release\stm8s_user_tim4.o
+Release\stm8s_uart.o
 #<END OBJECT_FILES>
 
 

@@ -38,6 +38,8 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+extern u8 startflag;
+extern u16 timercnt;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 /* Public functions ----------------------------------------------------------*/
@@ -489,6 +491,19 @@ INTERRUPT_HANDLER(TIM6_UPD_OVF_TRG_IRQHandler, 23)
   /* In order to detect unexpected events during development,
      it is recommended to set a breakpoint on the following instruction.
   */
+	//static u16 num;
+  
+  /*if(++num >= 500)          //每500ms LED翻转一次
+  {
+    num = 0;
+    GPIO_WriteReverse(GPIOD, GPIO_PIN_7);
+  }*/
+	if(startflag == 1)
+  {
+    timercnt++;
+  }
+  TIM4_ClearITPendingBit(TIM4_IT_UPDATE);   //清除标志位
+
  }
 #endif /* (STM8S903) || (STM8AF622x)*/
 
