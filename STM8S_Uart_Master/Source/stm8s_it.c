@@ -29,6 +29,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s_it.h"
+#include "stm8s_all_include.h"
 
 /** @addtogroup Template_Project
   * @{
@@ -411,6 +412,13 @@ INTERRUPT_HANDLER(I2C_IRQHandler, 19)
     /* In order to detect unexpected events during development,
        it is recommended to set a breakpoint on the following instruction.
     */
+		uint8_t Temp;
+		while((UART2_GetFlagStatus(UART2_FLAG_RXNE)==RESET));
+		Temp = UART2_ReceiveData8();
+		UART2_SendData8(Temp);
+		UART2_ClearFlag(UART2_FLAG_RXNE);
+		UART2_ClearITPendingBit(UART2_IT_RXNE);
+		
  }
 #endif /* (STM8S105) || (STM8AF626x) */
 

@@ -39,16 +39,16 @@ void main(void)
 	USER_SYSTEM_Config();
 	USER_LED_Init();
 	USER_TIM4_Init();
-	USER_UART1_Init();
+	USER_UART2_Init();
 	enableInterrupts();
   while (1)
   {
 		//LED_ON_OFF();
 		DF_LED_ON;
-		//UART1_Printf((uint8_t *)"LEDµÆÁÁ£¡");
+		//UART2_Printf((uint8_t *)"LEDµÆÁÁ£¡");
 		delay_ms(1000);
 		DF_LED_OFF;
-		//UART1_Printf((uint8_t *)"LEDµÆÃð£¡");
+		//UART2_Printf((uint8_t *)"LEDµÆÃð£¡");
 		delay_ms(1000);
   }
   

@@ -10,8 +10,8 @@
   53  0003 cd0000        	call	_USER_LED_Init
   55                     ; 41 	USER_TIM4_Init();
   57  0006 cd0000        	call	_USER_TIM4_Init
-  59                     ; 42 	USER_UART1_Init();
-  61  0009 cd0000        	call	_USER_UART1_Init
+  59                     ; 42 	USER_UART2_Init();
+  61  0009 cd0000        	call	_USER_UART2_Init
   63                     ; 43 	enableInterrupts();
   66  000c 9a            rim
   68  000d               L12:
@@ -42,7 +42,7 @@
  150                     	xref	_USER_TIM4_Init
  151                     	xref	_USER_SYSTEM_Config
  152                     	xref	_delay_ms
- 153                     	xref	_USER_UART1_Init
+ 153                     	xref	_USER_UART2_Init
  154                     	xref	_USER_LED_Init
  155                     	xdef	_assert_failed
  156                     	xref	_GPIO_WriteLow
