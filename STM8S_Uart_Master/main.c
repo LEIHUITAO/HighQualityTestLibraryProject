@@ -44,12 +44,12 @@ void main(void)
   while (1)
   {
 		//LED_ON_OFF();
-		DF_LED_ON;
+		//DF_LED_ON;
 		//UART2_Printf((uint8_t *)"LEDµÆÁÁ£¡");
-		delay_ms(1000);
-		DF_LED_OFF;
+		//delay_ms(1000);
+		//DF_LED_OFF;
 		//UART2_Printf((uint8_t *)"LEDµÆÃð£¡");
-		delay_ms(1000);
+		//delay_ms(1000);
   }
   
 }

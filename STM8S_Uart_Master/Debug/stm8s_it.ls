@@ -115,118 +115,165 @@
  623  0012               f_UART2_TX_IRQHandler:
  628                     ; 403  }
  631  0012 80            	iret
- 670                     ; 410  INTERRUPT_HANDLER(UART2_RX_IRQHandler, 21)
- 670                     ; 411  {
- 671                     	switch	.text
- 672  0013               f_UART2_RX_IRQHandler:
- 675       00000001      OFST:	set	1
- 676  0013 3b0002        	push	c_x+2
- 677  0016 be00          	ldw	x,c_x
- 678  0018 89            	pushw	x
- 679  0019 3b0002        	push	c_y+2
- 680  001c be00          	ldw	x,c_y
- 681  001e 89            	pushw	x
- 682  001f 88            	push	a
- 685  0020               L162:
- 686                     ; 416 		while((UART2_GetFlagStatus(UART2_FLAG_RXNE)==RESET));
- 688  0020 ae0020        	ldw	x,#32
- 689  0023 cd0000        	call	_UART2_GetFlagStatus
- 691  0026 4d            	tnz	a
- 692  0027 27f7          	jreq	L162
- 693                     ; 417 		Temp = UART2_ReceiveData8();
- 695  0029 cd0000        	call	_UART2_ReceiveData8
- 697  002c 6b01          	ld	(OFST+0,sp),a
- 698                     ; 418 		UART2_SendData8(Temp);
- 700  002e 7b01          	ld	a,(OFST+0,sp)
- 701  0030 cd0000        	call	_UART2_SendData8
- 703                     ; 419 		UART2_ClearFlag(UART2_FLAG_RXNE);
- 705  0033 ae0020        	ldw	x,#32
- 706  0036 cd0000        	call	_UART2_ClearFlag
- 708                     ; 420 		UART2_ClearITPendingBit(UART2_IT_RXNE);
- 710  0039 ae0255        	ldw	x,#597
- 711  003c cd0000        	call	_UART2_ClearITPendingBit
- 713                     ; 422  }
- 716  003f 84            	pop	a
- 717  0040 85            	popw	x
- 718  0041 bf00          	ldw	c_y,x
- 719  0043 320002        	pop	c_y+2
- 720  0046 85            	popw	x
- 721  0047 bf00          	ldw	c_x,x
- 722  0049 320002        	pop	c_x+2
- 723  004c 80            	iret
- 745                     ; 471  INTERRUPT_HANDLER(ADC1_IRQHandler, 22)
- 745                     ; 472  {
- 746                     	switch	.text
- 747  004d               f_ADC1_IRQHandler:
- 752                     ; 476  }
- 755  004d 80            	iret
- 781                     ; 497  INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
- 781                     ; 498  {
- 782                     	switch	.text
- 783  004e               f_TIM4_UPD_OVF_IRQHandler:
- 786  004e 3b0002        	push	c_x+2
- 787  0051 be00          	ldw	x,c_x
- 788  0053 89            	pushw	x
- 789  0054 3b0002        	push	c_y+2
- 790  0057 be00          	ldw	x,c_y
- 791  0059 89            	pushw	x
- 794                     ; 509 	if(startflag == 1)
- 796  005a b600          	ld	a,_startflag
- 797  005c a101          	cp	a,#1
- 798  005e 2607          	jrne	L503
- 799                     ; 511     timercnt++;
- 801  0060 be00          	ldw	x,_timercnt
- 802  0062 1c0001        	addw	x,#1
- 803  0065 bf00          	ldw	_timercnt,x
- 804  0067               L503:
- 805                     ; 513   TIM4_ClearITPendingBit(TIM4_IT_UPDATE);   //清除标志位
- 807  0067 a601          	ld	a,#1
- 808  0069 cd0000        	call	_TIM4_ClearITPendingBit
- 810                     ; 515  }
- 813  006c 85            	popw	x
- 814  006d bf00          	ldw	c_y,x
- 815  006f 320002        	pop	c_y+2
- 816  0072 85            	popw	x
- 817  0073 bf00          	ldw	c_x,x
- 818  0075 320002        	pop	c_x+2
- 819  0078 80            	iret
- 842                     ; 523 INTERRUPT_HANDLER(EEPROM_EEC_IRQHandler, 24)
- 842                     ; 524 {
- 843                     	switch	.text
- 844  0079               f_EEPROM_EEC_IRQHandler:
- 849                     ; 528 }
- 852  0079 80            	iret
- 864                     	xref.b	_timercnt
- 865                     	xref.b	_startflag
- 866                     	xdef	f_EEPROM_EEC_IRQHandler
- 867                     	xdef	f_TIM4_UPD_OVF_IRQHandler
- 868                     	xdef	f_ADC1_IRQHandler
- 869                     	xdef	f_UART2_TX_IRQHandler
- 870                     	xdef	f_UART2_RX_IRQHandler
- 871                     	xdef	f_I2C_IRQHandler
- 872                     	xdef	f_TIM3_CAP_COM_IRQHandler
- 873                     	xdef	f_TIM3_UPD_OVF_BRK_IRQHandler
- 874                     	xdef	f_TIM2_CAP_COM_IRQHandler
- 875                     	xdef	f_TIM2_UPD_OVF_BRK_IRQHandler
- 876                     	xdef	f_TIM1_UPD_OVF_TRG_BRK_IRQHandler
- 877                     	xdef	f_TIM1_CAP_COM_IRQHandler
- 878                     	xdef	f_SPI_IRQHandler
- 879                     	xdef	f_EXTI_PORTE_IRQHandler
- 880                     	xdef	f_EXTI_PORTD_IRQHandler
- 881                     	xdef	f_EXTI_PORTC_IRQHandler
- 882                     	xdef	f_EXTI_PORTB_IRQHandler
- 883                     	xdef	f_EXTI_PORTA_IRQHandler
- 884                     	xdef	f_CLK_IRQHandler
- 885                     	xdef	f_AWU_IRQHandler
- 886                     	xdef	f_TLI_IRQHandler
- 887                     	xdef	f_TRAP_IRQHandler
- 888                     	xdef	f_NonHandledInterrupt
- 889                     	xref	_UART2_ClearITPendingBit
- 890                     	xref	_UART2_ClearFlag
- 891                     	xref	_UART2_GetFlagStatus
- 892                     	xref	_UART2_SendData8
- 893                     	xref	_UART2_ReceiveData8
- 894                     	xref	_TIM4_ClearITPendingBit
- 895                     	xref.b	c_x
- 896                     	xref.b	c_y
- 915                     	end
+ 672                     ; 410  INTERRUPT_HANDLER(UART2_RX_IRQHandler, 21)
+ 672                     ; 411  {
+ 673                     	switch	.text
+ 674  0013               f_UART2_RX_IRQHandler:
+ 677       00000001      OFST:	set	1
+ 678  0013 3b0002        	push	c_x+2
+ 679  0016 be00          	ldw	x,c_x
+ 680  0018 89            	pushw	x
+ 681  0019 3b0002        	push	c_y+2
+ 682  001c be00          	ldw	x,c_y
+ 683  001e 89            	pushw	x
+ 684  001f 88            	push	a
+ 687  0020               L162:
+ 688                     ; 416 		while((UART2_GetFlagStatus(UART2_FLAG_RXNE)==RESET));
+ 690  0020 ae0020        	ldw	x,#32
+ 691  0023 cd0000        	call	_UART2_GetFlagStatus
+ 693  0026 4d            	tnz	a
+ 694  0027 27f7          	jreq	L162
+ 695                     ; 417 		Temp = UART2_ReceiveData8();
+ 697  0029 cd0000        	call	_UART2_ReceiveData8
+ 699  002c 6b01          	ld	(OFST+0,sp),a
+ 700                     ; 418 		if(Temp == LED_STATE_ON)
+ 702  002e 7b01          	ld	a,(OFST+0,sp)
+ 703  0030 a101          	cp	a,#1
+ 704  0032 2611          	jrne	L562
+ 705                     ; 420 			DF_LED_ON;
+ 707  0034 4b80          	push	#128
+ 708  0036 ae500f        	ldw	x,#20495
+ 709  0039 cd0000        	call	_GPIO_WriteHigh
+ 711  003c 84            	pop	a
+ 712                     ; 421 			UART2_Printf((uint8_t *)"LED灯亮！");
+ 714  003d ae0011        	ldw	x,#L762
+ 715  0040 cd0000        	call	_UART2_Printf
+ 718  0043 2013          	jra	L172
+ 719  0045               L562:
+ 720                     ; 423 		else if(Temp == LED_STATE_OFF)
+ 722  0045 0d01          	tnz	(OFST+0,sp)
+ 723  0047 261d          	jrne	L372
+ 724                     ; 425 			DF_LED_OFF;
+ 726  0049 4b80          	push	#128
+ 727  004b ae500f        	ldw	x,#20495
+ 728  004e cd0000        	call	_GPIO_WriteLow
+ 730  0051 84            	pop	a
+ 731                     ; 426 			UART2_Printf((uint8_t *)"LED灯灭！");
+ 733  0052 ae0007        	ldw	x,#L572
+ 734  0055 cd0000        	call	_UART2_Printf
+ 737  0058               L172:
+ 738                     ; 436 		UART2_ClearFlag(UART2_FLAG_RXNE);
+ 740  0058 ae0020        	ldw	x,#32
+ 741  005b cd0000        	call	_UART2_ClearFlag
+ 743                     ; 437 		UART2_ClearITPendingBit(UART2_IT_RXNE);
+ 745  005e ae0255        	ldw	x,#597
+ 746  0061 cd0000        	call	_UART2_ClearITPendingBit
+ 748                     ; 439  }
+ 750  0064 2012          	jra	L45
+ 751  0066               L372:
+ 752                     ; 430 			UART2_Printf((uint8_t *)"错误！");
+ 754  0066 ae0000        	ldw	x,#L103
+ 755  0069 cd0000        	call	_UART2_Printf
+ 757                     ; 431 			UART2_ClearFlag(UART2_FLAG_RXNE);
+ 759  006c ae0020        	ldw	x,#32
+ 760  006f cd0000        	call	_UART2_ClearFlag
+ 762                     ; 432 			UART2_ClearITPendingBit(UART2_IT_RXNE);
+ 764  0072 ae0255        	ldw	x,#597
+ 765  0075 cd0000        	call	_UART2_ClearITPendingBit
+ 767                     ; 433 			return;
+ 768  0078               L45:
+ 771  0078 84            	pop	a
+ 772  0079 85            	popw	x
+ 773  007a bf00          	ldw	c_y,x
+ 774  007c 320002        	pop	c_y+2
+ 775  007f 85            	popw	x
+ 776  0080 bf00          	ldw	c_x,x
+ 777  0082 320002        	pop	c_x+2
+ 778  0085 80            	iret
+ 800                     ; 488  INTERRUPT_HANDLER(ADC1_IRQHandler, 22)
+ 800                     ; 489  {
+ 801                     	switch	.text
+ 802  0086               f_ADC1_IRQHandler:
+ 807                     ; 493  }
+ 810  0086 80            	iret
+ 836                     ; 514  INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
+ 836                     ; 515  {
+ 837                     	switch	.text
+ 838  0087               f_TIM4_UPD_OVF_IRQHandler:
+ 841  0087 3b0002        	push	c_x+2
+ 842  008a be00          	ldw	x,c_x
+ 843  008c 89            	pushw	x
+ 844  008d 3b0002        	push	c_y+2
+ 845  0090 be00          	ldw	x,c_y
+ 846  0092 89            	pushw	x
+ 849                     ; 526 	if(startflag == 1)
+ 851  0093 b600          	ld	a,_startflag
+ 852  0095 a101          	cp	a,#1
+ 853  0097 2607          	jrne	L323
+ 854                     ; 528     timercnt++;
+ 856  0099 be00          	ldw	x,_timercnt
+ 857  009b 1c0001        	addw	x,#1
+ 858  009e bf00          	ldw	_timercnt,x
+ 859  00a0               L323:
+ 860                     ; 530   TIM4_ClearITPendingBit(TIM4_IT_UPDATE);   //清除标志位
+ 862  00a0 a601          	ld	a,#1
+ 863  00a2 cd0000        	call	_TIM4_ClearITPendingBit
+ 865                     ; 532  }
+ 868  00a5 85            	popw	x
+ 869  00a6 bf00          	ldw	c_y,x
+ 870  00a8 320002        	pop	c_y+2
+ 871  00ab 85            	popw	x
+ 872  00ac bf00          	ldw	c_x,x
+ 873  00ae 320002        	pop	c_x+2
+ 874  00b1 80            	iret
+ 897                     ; 540 INTERRUPT_HANDLER(EEPROM_EEC_IRQHandler, 24)
+ 897                     ; 541 {
+ 898                     	switch	.text
+ 899  00b2               f_EEPROM_EEC_IRQHandler:
+ 904                     ; 545 }
+ 907  00b2 80            	iret
+ 919                     	xref.b	_timercnt
+ 920                     	xref.b	_startflag
+ 921                     	xref	_UART2_Printf
+ 922                     	xdef	f_EEPROM_EEC_IRQHandler
+ 923                     	xdef	f_TIM4_UPD_OVF_IRQHandler
+ 924                     	xdef	f_ADC1_IRQHandler
+ 925                     	xdef	f_UART2_TX_IRQHandler
+ 926                     	xdef	f_UART2_RX_IRQHandler
+ 927                     	xdef	f_I2C_IRQHandler
+ 928                     	xdef	f_TIM3_CAP_COM_IRQHandler
+ 929                     	xdef	f_TIM3_UPD_OVF_BRK_IRQHandler
+ 930                     	xdef	f_TIM2_CAP_COM_IRQHandler
+ 931                     	xdef	f_TIM2_UPD_OVF_BRK_IRQHandler
+ 932                     	xdef	f_TIM1_UPD_OVF_TRG_BRK_IRQHandler
+ 933                     	xdef	f_TIM1_CAP_COM_IRQHandler
+ 934                     	xdef	f_SPI_IRQHandler
+ 935                     	xdef	f_EXTI_PORTE_IRQHandler
+ 936                     	xdef	f_EXTI_PORTD_IRQHandler
+ 937                     	xdef	f_EXTI_PORTC_IRQHandler
+ 938                     	xdef	f_EXTI_PORTB_IRQHandler
+ 939                     	xdef	f_EXTI_PORTA_IRQHandler
+ 940                     	xdef	f_CLK_IRQHandler
+ 941                     	xdef	f_AWU_IRQHandler
+ 942                     	xdef	f_TLI_IRQHandler
+ 943                     	xdef	f_TRAP_IRQHandler
+ 944                     	xdef	f_NonHandledInterrupt
+ 945                     	xref	_UART2_ClearITPendingBit
+ 946                     	xref	_UART2_ClearFlag
+ 947                     	xref	_UART2_GetFlagStatus
+ 948                     	xref	_UART2_ReceiveData8
+ 949                     	xref	_TIM4_ClearITPendingBit
+ 950                     	xref	_GPIO_WriteLow
+ 951                     	xref	_GPIO_WriteHigh
+ 952                     .const:	section	.text
+ 953  0000               L103:
+ 954  0000 b4edcef3a3a1  	dc.b	180,237,206,243,163,161,0
+ 955  0007               L572:
+ 956  0007 4c4544b5      	dc.b	"LED",181
+ 957  000b c6c3f0a3a100  	dc.b	198,195,240,163,161,0
+ 958  0011               L762:
+ 959  0011 4c4544b5      	dc.b	"LED",181
+ 960  0015 c6c1c1a3a100  	dc.b	198,193,193,163,161,0
+ 961                     	xref.b	c_x
+ 962                     	xref.b	c_y
+ 982                     	end

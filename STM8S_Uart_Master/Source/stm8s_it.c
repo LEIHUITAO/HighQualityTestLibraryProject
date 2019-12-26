@@ -415,7 +415,24 @@ INTERRUPT_HANDLER(I2C_IRQHandler, 19)
 		uint8_t Temp;
 		while((UART2_GetFlagStatus(UART2_FLAG_RXNE)==RESET));
 		Temp = UART2_ReceiveData8();
-		UART2_SendData8(Temp);
+		if(Temp == LED_STATE_ON)
+		{
+			DF_LED_ON;
+			UART2_Printf((uint8_t *)"LEDµÆÁÁ£¡");
+		}
+		else if(Temp == LED_STATE_OFF)
+		{
+			DF_LED_OFF;
+			UART2_Printf((uint8_t *)"LEDµÆÃð£¡");
+		}
+		else
+		{
+			UART2_Printf((uint8_t *)"´íÎó£¡");
+			UART2_ClearFlag(UART2_FLAG_RXNE);
+			UART2_ClearITPendingBit(UART2_IT_RXNE);
+			return;
+		}
+		//UART2_SendData8(Temp);
 		UART2_ClearFlag(UART2_FLAG_RXNE);
 		UART2_ClearITPendingBit(UART2_IT_RXNE);
 		
